@@ -27,6 +27,8 @@ subred = click.prompt("Subred", default="172.20.227.0")
 mascara = click.prompt("Máscara", default="255.255.0.0")
 gateway = click.prompt("Puerta de enlace", default="172.20.1.2")
 dns = click.prompt("Servidores de nombres", default="192.168.10.1 1.1.1.1")
+publicas = click.prompt("Direcciones públicas", default=1)
+privadas = click.prompt("Direcciones privadas", default=10)
 
 print()
 
@@ -79,8 +81,12 @@ for i in range(inicial, final + 1):
     f.write("SECURITY_GROUPS = \"0\"" + "\n")
     f.write("VLAN_ID = \"\"" + "\n")
     f.write("VN_MAD = \"fw\"" + "\n")
-    f.write("AR=[TYPE = \"IP4\", IP = \"" + subred[:-1] + str(i) + "\", SIZE = \"1\" ]" + "\n")
-    f.write("AR=[TYPE = \"IP4\", IP = \"" + subred[:-1] + str(10 * (i - 1) + 50) + "\", SIZE = \"10\" ]" + "\n")
+    if publicas > 0:
+        f.write("AR=[TYPE = \"IP4\", IP = \""
+                + subred[:-1] + str(publicas * (i - 1) + 1) + "\", SIZE = \"{publicas}\" ]" + "\n")
+    if privadas > 0:
+        f.write("AR=[TYPE = \"IP4\", IP = \""
+                + subred[:-1] + str(privadas * (i - 1) + 50) + "\", SIZE = \"{privadas}\" ]" + "\n")
     f.close()
     os.system("onevnet create temp.txt")
     os.remove("temp.txt")
