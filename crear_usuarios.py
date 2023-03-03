@@ -83,10 +83,10 @@ for i in range(inicial, final + 1):
     f.write("VN_MAD = \"fw\"" + "\n")
     if publicas > 0:
         f.write("AR=[TYPE = \"IP4\", IP = \""
-                + subred[:-1] + str(publicas * (i - 1) + 1) + "\", SIZE = \"{publicas}\" ]" + "\n")
+                + subred[:-1] + str(publicas * (i - 1) + 1) + "\", SIZE = \"" + str(publicas) + "\" ]" + "\n")
     if privadas > 0:
         f.write("AR=[TYPE = \"IP4\", IP = \""
-                + subred[:-1] + str(privadas * (i - 1) + 50) + "\", SIZE = \"{privadas}\" ]" + "\n")
+                + subred[:-1] + str(privadas * (i - 1) + 50) + "\", SIZE = \"" + str(privadas) + "\" ]" + "\n")
     f.close()
     os.system("onevnet create temp.txt")
     os.remove("temp.txt")
