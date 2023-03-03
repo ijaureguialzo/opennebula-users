@@ -1,12 +1,16 @@
 #!/usr/bin/env python3
 
 import os
+import click
 
-inicial = int(input("Usuario inicial (ej. 1): "))
-final = int(input("Usuario final (ej. 15): "))
+print("--- Datos del usuario ---")
+nombre = click.prompt("Nombre de usuario", default="ciber")
+separador = click.prompt("Separador", default="-")
+inicial = click.prompt("Número de usuario inicial", default=1)
+final = click.prompt("Número de usuario final", default=15)
 
 for i in range(inicial, final + 1):
-    usuario = "ciber_" + "{0:0>2}".format(i)
+    usuario = nombre + separador + "{0:0>2}".format(i)
 
     os.system("onevdc delete " + usuario)
     os.system("oneuser delete " + usuario)
