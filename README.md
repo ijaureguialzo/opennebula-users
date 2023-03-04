@@ -2,6 +2,33 @@
 
 Scripts para crear y borrar usuarios en OpenNebula.
 
+## Prerrequisitos
+
+1. Crear los ficheros `.env` y `.token` a partir de `env-example` y `token-example`.
+
+2. Instalar Docker Desktop para [Windows y macOS](https://www.docker.com/products/docker-desktop/)
+   o [Linux](https://docs.docker.com/desktop/linux/install/).
+
+3. En Windows, instalar [Scoop](https://scoop.sh) usando PowerShell:
+
+   ```powershell
+   Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
+   [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
+   Invoke-Expression (New-Object System.Net.WebClient).DownloadString('https://get.scoop.sh')
+   ```
+
+   Y después instalar los comandos necesarios:
+
+   ```powershell
+   scoop install make
+   ```
+
+4. Construir el contenedor::
+
+    ```shell
+    make build
+    ```
+
 ## Funcionamiento
 
 Crear usuarios:
