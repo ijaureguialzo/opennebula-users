@@ -15,7 +15,7 @@ separador = click.prompt("Separador", default="-")
 inicial = click.prompt("Número de usuario inicial", default=1)
 final = click.prompt("Número de usuario final", default=15)
 contrasenya = click.prompt("Contraseña", hide_input=True, confirmation_prompt=True)
-grupo = click.prompt("Grupo de usuarios", default="ciberseguridad")
+grupo = click.prompt("Grupo de usuarios", default=nombre)
 
 print("--- Cuota de recursos --------------")
 cpus = click.prompt("CPUs", type=float, default=4)

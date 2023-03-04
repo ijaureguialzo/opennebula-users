@@ -15,7 +15,7 @@ nombre = click.prompt("Nombre de usuario", default="ciber")
 separador = click.prompt("Separador", default="-")
 inicial = click.prompt("Número de usuario inicial", default=1)
 final = click.prompt("Número de usuario final", default=15)
-grupo = click.prompt("Grupo de usuarios", default="ciberseguridad")
+grupo = click.prompt("Grupo de usuarios", default=nombre)
 
 print()
 
