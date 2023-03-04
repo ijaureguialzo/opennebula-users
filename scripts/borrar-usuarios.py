@@ -26,7 +26,8 @@ for i in range(inicial, final + 1):
 
     vm_ids = subprocess.run(['onevm', 'list', usuario, '-l', 'id', '--no-header'],
                             capture_output=True, text=True).stdout.split()
-    os.system("onevm recover --delete " + ','.join(vm_ids))
+    if len(vm_ids) > 0:
+        os.system("onevm recover --delete " + ','.join(vm_ids))
 
     os.system("onevdc delete " + usuario)
     os.system("oneuser delete " + usuario)
