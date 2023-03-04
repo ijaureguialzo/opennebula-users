@@ -7,6 +7,9 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+      args:
+        - DEBIAN_VERSION=${DEBIAN_VERSION}
+        - OPENNEBULA_VERSION=${OPENNEBULA_VERSION}
     hostname: workspace
     environment:
       - PS1=\u@\h:\w\$\040

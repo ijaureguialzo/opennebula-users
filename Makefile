@@ -1,5 +1,12 @@
 #!make
 
+ifneq (,$(wildcard ./.env))
+    include .env
+    export
+else
+$(error No se encuentra el fichero .env)
+endif
+
 help: _header
 	${info }
 	@echo Opciones:
