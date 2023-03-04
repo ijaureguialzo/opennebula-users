@@ -2,6 +2,7 @@
 
 import os
 import click
+import subprocess
 
 print()
 print("-------------------------------------")
@@ -22,6 +23,10 @@ for i in range(inicial, final + 1):
     usuario = nombre + separador + "{0:0>2}".format(i)
 
     print(f"Borrando el usuario {usuario} y sus recursos asociados...")
+
+    vm_ids = subprocess.run(['onevm', 'list', usuario, '-l', 'id', '--no-header'],
+                            capture_output=True, text=True).stdout.split()
+    os.system("onevm recover --delete " + ','.join(vm_ids))
 
     os.system("onevdc delete " + usuario)
     os.system("oneuser delete " + usuario)
