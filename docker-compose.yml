@@ -1,0 +1,17 @@
+version: "3.5"
+
+services:
+
+  opennebula-cli:
+    platform: linux/amd64
+    build:
+      context: .
+      dockerfile: Dockerfile
+    hostname: workspace
+    environment:
+      - PS1=\u@\h:\w\$\040
+    volumes:
+      - homedir:/root
+
+volumes:
+  homedir:
