@@ -2,7 +2,7 @@
 
 Scripts para crear y borrar usuarios en OpenNebula.
 
-## Prerequisitos
+## Prerrequisitos
 
 ```shell
 pip3 install click
