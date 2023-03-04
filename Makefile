@@ -12,6 +12,7 @@ help: _header
 	@echo Opciones:
 	@echo ---------------------------------------------
 	@echo build
+	@echo crear-usuarios / borrar-usuarios
 	@echo workspace
 	@echo clean
 	@echo ---------------------------------------------
@@ -23,6 +24,12 @@ _header:
 
 build:
 	@docker compose build
+
+crear-usuarios:
+	@docker compose run --rm opennebula-cli python3 /scripts/crear_usuarios.py
+
+borrar-usuarios:
+	@docker compose run --rm opennebula-cli python3 /scripts/borrar_usuarios.py
 
 workspace:
 	@docker compose run --rm opennebula-cli /bin/bash

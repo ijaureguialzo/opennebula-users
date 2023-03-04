@@ -19,6 +19,7 @@ services:
     volumes:
       - ./.token:/root/.token
       - homedir:/root
+      - ./scripts:/scripts
 
 volumes:
   homedir:
