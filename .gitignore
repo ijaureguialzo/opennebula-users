@@ -77,3 +77,5 @@ Temporary Items
 .idea/
 
 .env
+
+.token

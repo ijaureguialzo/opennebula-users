@@ -13,7 +13,11 @@ services:
     hostname: workspace
     environment:
       - PS1=\u@\h:\w\$\040
+      - ONE_XMLRPC=${ONE_XMLRPC}
+      - ONE_AUTH=/root/.token
+      - ONE_DISABLE_SSL_VERIFY=true
     volumes:
+      - ./.token:/root/.token
       - homedir:/root
 
 volumes:
