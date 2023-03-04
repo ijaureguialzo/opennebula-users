@@ -26,10 +26,10 @@ build:
 	@docker compose build
 
 crear-usuarios:
-	@docker compose run --rm opennebula-cli python3 /scripts/crear_usuarios.py
+	@docker compose run --rm opennebula-cli python3 /scripts/crear-usuarios.py
 
 borrar-usuarios:
-	@docker compose run --rm opennebula-cli python3 /scripts/borrar_usuarios.py
+	@docker compose run --rm opennebula-cli python3 /scripts/borrar-usuarios.py
 
 workspace:
 	@docker compose run --rm opennebula-cli /bin/bash
