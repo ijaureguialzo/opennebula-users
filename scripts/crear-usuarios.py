@@ -70,7 +70,8 @@ for i in range(inicial, final + 1):
     os.system("oneuser addgroup " + usuario + " " + grupo)
 
     f = open("temp.txt", "w")
-    f.write(f"VM=[MEMORY=\"{ram * 1024}\", CPU=\"{cpus}\", SYSTEM_DISK_SIZE=\"{disco * 1024}\"]")
+    f.write(f"VM=[MEMORY=\"{ram * 1024}\", CPU=\"{cpus}\", SYSTEM_DISK_SIZE=\"{disco * 1024}\"]\n")
+    f.write(f"DATASTORE=[ID=\"1\", SIZE=\"{disco * 1024}\"]")
     f.close()
     os.system("oneuser quota " + usuario + " temp.txt")
     os.remove("temp.txt")
