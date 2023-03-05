@@ -98,7 +98,7 @@ for i in range(inicial, final + 1):
                 + subred[:-1] + str(privadas * (i - 1) + 1) + "\", SIZE = \"" + str(privadas) + "\" ]" + "\n")
     f.close()
     vnet_id = subprocess.run(['onevnet', 'create', 'temp.txt'],
-                            capture_output=True, text=True).stdout.split()[-1]
+                             capture_output=True, text=True).stdout.split()[-1]
     print(f"ID: {vnet_id}")
     os.remove("temp.txt")
 
