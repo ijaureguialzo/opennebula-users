@@ -11,7 +11,7 @@ print("------------------------------------")
 print()
 
 print("--- Datos del usuario --------------")
-nombre = click.prompt("Nombre de usuario", default="ciber")
+nombre = click.prompt("Nombre de usuario", default="test")
 separador = click.prompt("Separador", default="-")
 inicial = click.prompt("Número de usuario inicial", default=1)
 final = click.prompt("Número de usuario final", default=15)
