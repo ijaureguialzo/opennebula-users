@@ -35,6 +35,7 @@ print()
 
 print(f"Creando el grupo {grupo}...")
 os.system("onegroup create " + grupo)
+os.system("onevdc delgroup default " + grupo)
 
 for i in range(inicial, final + 1):
     usuario = nombre + separador + "{0:0>2}".format(i)
