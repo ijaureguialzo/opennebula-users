@@ -2,6 +2,7 @@
 
 import os
 import click
+import subprocess
 
 print()
 print("------------------------------------")
@@ -91,7 +92,8 @@ for i in range(inicial, final + 1):
         f.write("AR=[TYPE = \"IP4\", IP = \""
                 + subred[:-1] + str(privadas * (i - 1) + 1) + "\", SIZE = \"" + str(privadas) + "\" ]" + "\n")
     f.close()
-    os.system("onevnet create temp.txt")
+    vnet_id = subprocess.run(['onevnet', 'create', 'temp.txt'],
+                            capture_output=True, text=True).stdout.split()[-1]
     os.remove("temp.txt")
 
-    os.system("onevdc addvnet " + usuario + " 0 " + usuario)
+    os.system("onevdc addvnet " + usuario + " 0 " + vnet_id)
