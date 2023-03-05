@@ -39,9 +39,12 @@ os.system("onegroup create " + grupo)
 for i in range(inicial, final + 1):
     usuario = nombre + separador + "{0:0>2}".format(i)
 
-    print(f"Creando el usuario {usuario} y sus recursos asociados...")
+    print(f"\nCreando el usuario {usuario} y sus recursos asociados...\n")
 
+    print(f"Creando el datacenter {usuario}...")
     os.system("onevdc create " + usuario)
+
+    print(f"Creando el grupo {usuario}...")
     os.system("onegroup create " + usuario)
 
     f = open("temp.txt", "w")
@@ -60,6 +63,7 @@ for i in range(inicial, final + 1):
     os.system("onevdc adddatastore " + usuario + " 0 1")
     os.system("onevdc adddatastore " + usuario + " 0 2")
 
+    print(f"Creando el usuario {usuario}...")
     os.system("oneuser create " + usuario + " " + contrasenya)
     os.system("oneuser chgrp " + usuario + " " + usuario)
     os.system("oneuser addgroup " + usuario + " " + grupo)
@@ -70,6 +74,7 @@ for i in range(inicial, final + 1):
     os.system("oneuser quota " + usuario + " temp.txt")
     os.remove("temp.txt")
 
+    print(f"Creando la red {usuario}...")
     f = open("temp.txt", "w")
     f.write(f"NAME = \"{usuario}\"" + "\n")
     f.write("BRIDGE = \"aulas\"" + "\n")
@@ -94,6 +99,7 @@ for i in range(inicial, final + 1):
     f.close()
     vnet_id = subprocess.run(['onevnet', 'create', 'temp.txt'],
                             capture_output=True, text=True).stdout.split()[-1]
+    print(f"ID: {vnet_id}")
     os.remove("temp.txt")
 
     os.system("onevdc addvnet " + usuario + " 0 " + vnet_id)
