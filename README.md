@@ -43,6 +43,12 @@ Borrar usuarios:
 make borrar-usuarios
 ```
 
+Crear un administrador:
+
+```shell
+make crear-admin
+```
+
 ## Referencias
 
 - [Command Line Interface](https://docs.opennebula.io/6.6/management_and_operations/references/cli.html)
