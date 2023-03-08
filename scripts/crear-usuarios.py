@@ -79,7 +79,12 @@ for i in range(inicial, final + 1):
         SYSTEM_DISK_SIZE="{disco * 1024}"
     ]
     \n''')
-    f.write(f"DATASTORE=[ID=\"1\", SIZE=\"{disco * 1024}\"]")
+    f.write(f'''
+    DATASTORE=[
+        ID="1",
+        SIZE="{disco * 1024}"
+    ]
+    \n''')
     f.close()
     os.system("oneuser quota " + usuario + " temp.txt")
     os.remove("temp.txt")
