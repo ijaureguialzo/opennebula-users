@@ -23,4 +23,6 @@ RUN apt-get -y install python3-pip
 
 RUN pip3 install click
 
+ENV PS1='\u@\h:\w\$\040'
+
 WORKDIR /root
