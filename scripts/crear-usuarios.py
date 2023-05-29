@@ -29,7 +29,15 @@ mascara = click.prompt("Máscara", default="255.255.0.0")
 gateway = click.prompt("Puerta de enlace", default="172.20.1.2")
 dns = click.prompt("Servidores de nombres", default="192.168.10.1 1.1.1.1")
 publicas = click.prompt("Direcciones públicas", default=1)
+if publicas > 0:
+    inicial_publicas = click.prompt("Número de host inicial para las direcciones públicas", default=1)
+else:
+    inicial_publicas = 0
 privadas = click.prompt("Direcciones privadas", default=10)
+if publicas > 0:
+    inicial_privadas = click.prompt("Número de host inicial para las direcciones privadas", default=50)
+else:
+    inicial_privadas = click.prompt("Número de host inicial para las direcciones privadas", default=10)
 
 print()
 
@@ -104,13 +112,16 @@ for i in range(inicial, final + 1):
     f.write("VN_MAD = \"fw\"" + "\n")
     if publicas > 0:
         f.write("AR=[TYPE = \"IP4\", IP = \""
-                + subred[:-1] + str(publicas * (i - 1) + 1) + "\", SIZE = \"" + str(publicas) + "\" ]" + "\n")
+                + subred[:-1] + str(publicas * (i - 1) + inicial_publicas) + "\", SIZE = \""
+                + str(publicas) + "\" ]" + "\n")
         if privadas > 0:
             f.write("AR=[TYPE = \"IP4\", IP = \""
-                    + subred[:-1] + str(privadas * (i - 1) + 50) + "\", SIZE = \"" + str(privadas) + "\" ]" + "\n")
+                    + subred[:-1] + str(privadas * (i - 1) + inicial_privadas) + "\", SIZE = \""
+                    + str(privadas) + "\" ]" + "\n")
     elif privadas > 0:
         f.write("AR=[TYPE = \"IP4\", IP = \""
-                + subred[:-1] + str(privadas * (i - 1) + 1) + "\", SIZE = \"" + str(privadas) + "\" ]" + "\n")
+                + subred[:-1] + str(privadas * (i - 1) + inicial_privadas) + "\", SIZE = \""
+                + str(privadas) + "\" ]" + "\n")
     f.close()
     vnet_id = subprocess.run(['onevnet', 'create', 'temp.txt'],
                              capture_output=True, text=True).stdout.split()[-1]
