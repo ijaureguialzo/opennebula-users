@@ -11,7 +11,7 @@ print()
 
 print("--- Datos del usuario --------------")
 usuario = click.prompt("Nombre de usuario", default="test")
-contrasenya = click.prompt("Contraseña", hide_input=True, confirmation_prompt=True)
+contrasenya = click.prompt("Contraseña", hide_input=True, confirmation_prompt="Confirmar contraseña")
 
 print(f"\nCreando el usuario {usuario} y sus recursos asociados...\n")
 
