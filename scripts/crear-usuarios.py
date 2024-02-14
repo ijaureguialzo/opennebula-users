@@ -97,35 +97,38 @@ for i in range(inicial, final + 1):
     os.system("oneuser quota " + usuario + " temp.txt")
     os.remove("temp.txt")
 
-    print(f"Creando la red {usuario}...")
-    f = open("temp.txt", "w")
-    f.write(f"NAME = \"{usuario}\"" + "\n")
-    f.write("BRIDGE = \"aulas\"" + "\n")
-    f.write("BRIDGE_TYPE = \"linux\"" + "\n")
-    f.write(f"DNS = \"{dns}\"" + "\n")
-    f.write(f"GATEWAY = \"{gateway}\"" + "\n")
-    f.write(f"NETWORK_MASK = \"{mascara}\"" + "\n")
-    f.write("OUTER_VLAN_ID = \"\"" + "\n")
-    f.write("PHYDEV = \"\"" + "\n")
-    f.write("SECURITY_GROUPS = \"0\"" + "\n")
-    f.write("VLAN_ID = \"\"" + "\n")
-    f.write("VN_MAD = \"fw\"" + "\n")
-    if publicas > 0:
-        f.write("AR=[TYPE = \"IP4\", IP = \""
-                + subred[:-1] + str(publicas * (i - 1) + inicial_publicas) + "\", SIZE = \""
-                + str(publicas) + "\" ]" + "\n")
-        if privadas > 0:
+    try:
+        print(f"Creando la red {usuario}...")
+        f = open("temp.txt", "w")
+        f.write(f"NAME = \"{usuario}\"" + "\n")
+        f.write("BRIDGE = \"aulas\"" + "\n")
+        f.write("BRIDGE_TYPE = \"linux\"" + "\n")
+        f.write(f"DNS = \"{dns}\"" + "\n")
+        f.write(f"GATEWAY = \"{gateway}\"" + "\n")
+        f.write(f"NETWORK_MASK = \"{mascara}\"" + "\n")
+        f.write("OUTER_VLAN_ID = \"\"" + "\n")
+        f.write("PHYDEV = \"\"" + "\n")
+        f.write("SECURITY_GROUPS = \"0\"" + "\n")
+        f.write("VLAN_ID = \"\"" + "\n")
+        f.write("VN_MAD = \"fw\"" + "\n")
+        if publicas > 0:
+            f.write("AR=[TYPE = \"IP4\", IP = \""
+                    + subred[:-1] + str(publicas * (i - 1) + inicial_publicas) + "\", SIZE = \""
+                    + str(publicas) + "\" ]" + "\n")
+            if privadas > 0:
+                f.write("AR=[TYPE = \"IP4\", IP = \""
+                        + subred[:-1] + str(privadas * (i - 1) + inicial_privadas) + "\", SIZE = \""
+                        + str(privadas) + "\" ]" + "\n")
+        elif privadas > 0:
             f.write("AR=[TYPE = \"IP4\", IP = \""
                     + subred[:-1] + str(privadas * (i - 1) + inicial_privadas) + "\", SIZE = \""
                     + str(privadas) + "\" ]" + "\n")
-    elif privadas > 0:
-        f.write("AR=[TYPE = \"IP4\", IP = \""
-                + subred[:-1] + str(privadas * (i - 1) + inicial_privadas) + "\", SIZE = \""
-                + str(privadas) + "\" ]" + "\n")
-    f.close()
-    vnet_id = subprocess.run(['onevnet', 'create', 'temp.txt'],
-                             capture_output=True, text=True).stdout.split()[-1]
-    print(f"ID: {vnet_id}")
-    os.remove("temp.txt")
+        f.close()
+        vnet_id = subprocess.run(['onevnet', 'create', 'temp.txt'],
+                                 capture_output=True, text=True).stdout.split()[-1]
+        print(f"ID: {vnet_id}")
+        os.remove("temp.txt")
 
-    os.system("onevdc addvnet " + usuario + " 0 " + vnet_id)
+        os.system("onevdc addvnet " + usuario + " 0 " + vnet_id)
+    except:
+        print("Error al crear la red.")
