@@ -10,14 +10,17 @@ endif
 help: _header
 	${info }
 	@echo Opciones:
-	@echo ---------------------------------------------
+	@echo --------------------------------
 	@echo build
+	@echo --------------------------------
 	@echo crear-usuarios / borrar-usuarios
-	@echo crear-admin
 	@echo modificar-cuotas
+	@echo --------------------------------
+	@echo crear-usuario / crear-admin
+	@echo --------------------------------
 	@echo workspace
 	@echo clean
-	@echo ---------------------------------------------
+	@echo --------------------------------
 
 _header:
 	@echo -----------------------
@@ -32,6 +35,9 @@ crear-usuarios:
 
 borrar-usuarios:
 	@docker compose run --rm opennebula-cli python3 /scripts/borrar-usuarios.py
+
+crear-usuario:
+	@docker compose run --rm opennebula-cli python3 /scripts/crear-usuario.py
 
 crear-admin:
 	@docker compose run --rm opennebula-cli python3 /scripts/crear-admin.py
