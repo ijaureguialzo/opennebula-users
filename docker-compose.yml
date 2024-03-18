@@ -1,7 +1,4 @@
-version: "3.5"
-
 services:
-
   opennebula-cli:
     platform: linux/amd64
     build:
