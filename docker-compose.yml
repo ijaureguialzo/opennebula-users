@@ -16,9 +16,5 @@ services:
       - ONE_AUTH=/root/.token
       - ONE_DISABLE_SSL_VERIFY=true
     volumes:
-      - ./.token:/root/.token
-      - homedir:/root
-      - ./scripts:/scripts
-
-volumes:
-  homedir:
+      - ./.token:/root/.token:ro
+      - ./scripts:/scripts:ro
