@@ -19,9 +19,7 @@ RUN apt-get update
 
 RUN apt-get -y install opennebula-tools
 
-RUN apt-get -y install python3-pip
-
-RUN pip3 install click
+RUN apt-get -y install python3-click
 
 ENV PS1='\u@\h:\w\$\040'
 
