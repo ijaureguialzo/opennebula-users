@@ -27,7 +27,7 @@ subred = click.prompt("Subred", default="172.20.227.0")
 mascara = click.prompt("Máscara", default="255.255.0.0")
 gateway = click.prompt("Puerta de enlace", default="172.20.1.2")
 dns = click.prompt("Servidores de nombres", default="192.168.10.1 1.1.1.1")
-publicas = click.prompt("Direcciones públicas", default=1)
+publicas = click.prompt("Direcciones públicas", default=0)
 if publicas > 0:
     inicial_publicas = click.prompt("Número de host inicial para las direcciones públicas", default=1)
 else:
