@@ -80,9 +80,7 @@ for i in range(inicial, final + 1):
     f = open("temp.txt", "w")
     f.write(f'''
     VM=[
-        MEMORY="{ram * 1024}",
         RUNNING_MEMORY="{ram * 1024}",
-        CPU="{cpus}",
         RUNNING_CPU="{cpus}",
         SYSTEM_DISK_SIZE="{disco * 1024}"
     ]
