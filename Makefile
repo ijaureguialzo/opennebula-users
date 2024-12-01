@@ -17,6 +17,7 @@ help: _header
 	@echo modificar-cuotas
 	@echo --------------------------------
 	@echo crear-usuario / crear-admin
+	@echo borrar-usuario
 	@echo --------------------------------
 	@echo workspace
 	@echo clean
@@ -41,6 +42,9 @@ crear-usuario:
 
 crear-admin:
 	@docker compose run --rm opennebula-cli python3 /scripts/crear-admin.py
+
+borrar-usuario:
+	@docker compose run --rm opennebula-cli python3 /scripts/borrar-usuario.py
 
 modificar-cuotas:
 	@docker compose run --rm opennebula-cli python3 /scripts/modificar-cuotas.py
