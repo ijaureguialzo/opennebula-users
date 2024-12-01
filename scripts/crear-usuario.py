@@ -11,11 +11,9 @@ print("-------------------------------------------------")
 print()
 
 print("--- Datos del usuario --------------")
-nombre = click.prompt("Nombre de usuario", default="test")
-separador = click.prompt("Separador", default="-")
-numero = click.prompt("Número de usuario", default=1)
+usuario = click.prompt("Nombre de usuario", default="test")
 contrasenya = click.prompt("Contraseña", hide_input=True, confirmation_prompt="Confirmar contraseña")
-grupo = click.prompt("Grupo de usuarios", default=nombre)
+grupo = click.prompt("Grupo de usuarios", default=usuario)
 
 print("--- Cuota de recursos --------------")
 cpus = click.prompt("CPUs", type=float, default=4)
@@ -43,8 +41,6 @@ print()
 print(f"Creando el grupo {grupo}...")
 os.system("onegroup create " + grupo)
 os.system("onevdc delgroup default " + grupo)
-
-usuario = nombre + separador + "{0:0>2}".format(numero)
 
 print(f"\nCreando el usuario {usuario} y sus recursos asociados...\n")
 
