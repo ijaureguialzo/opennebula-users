@@ -54,7 +54,11 @@ for i in range(inicial, final + 1):
     os.system("onevdc create " + usuario)
 
     print(f"Creando el grupo {usuario}...")
-    os.system("onegroup create " + usuario)
+    group_id = subprocess.run(['onegroup', 'create', usuario, '--resources', 'VM+IMAGE+TEMPLATE+DOCUMENT+VROUTER+VMGROUP+NET'],
+                             capture_output=True, text=True).stdout.split()[-1]
+    print(f"ID: {group_id}")
+    os.system(f'oneacl create "@{group_id} CLUSTER/* ADMIN"')
+    os.system(f'oneacl create "@{group_id} NET/* ADMIN"')
 
     f = open("temp.txt", "w")
     f.write("SUNSTONE=[")
