@@ -15,9 +15,11 @@ help: _header
 	@echo --------------------------------
 	@echo crear-usuarios / borrar-usuarios
 	@echo modificar-cuotas
+	@echo borrar-maquinas
 	@echo --------------------------------
 	@echo crear-usuario / crear-admin
 	@echo borrar-usuario
+	@echo borrar-maquinas-usuario
 	@echo --------------------------------
 	@echo workspace
 	@echo clean
@@ -48,6 +50,12 @@ borrar-usuario:
 
 modificar-cuotas:
 	@docker compose run --rm opennebula-cli python3 /scripts/modificar-cuotas.py
+
+borrar-maquinas:
+	@docker compose run --rm opennebula-cli python3 /scripts/borrar-maquinas.py
+
+borrar-maquinas-usuario:
+	@docker compose run --rm opennebula-cli python3 /scripts/borrar-maquinas-usuario.py
 
 workspace:
 	@docker compose run --rm opennebula-cli /bin/bash
