@@ -18,6 +18,7 @@ help: _header
 	@echo borrar-maquinas
 	@echo --------------------------------
 	@echo crear-usuario / crear-admin
+	@echo crear-red
 	@echo borrar-usuario
 	@echo borrar-maquinas-usuario
 	@echo --------------------------------
@@ -41,6 +42,9 @@ borrar-usuarios:
 
 crear-usuario:
 	@docker compose run --rm opennebula-cli python3 /scripts/crear-usuario.py
+
+crear-red:
+	@docker compose run --rm opennebula-cli python3 /scripts/crear-red.py
 
 crear-admin:
 	@docker compose run --rm opennebula-cli python3 /scripts/crear-admin.py
