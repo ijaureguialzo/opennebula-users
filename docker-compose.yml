@@ -1,6 +1,5 @@
 services:
   opennebula-cli:
-    platform: linux/amd64
     build:
       context: .
       dockerfile: Dockerfile

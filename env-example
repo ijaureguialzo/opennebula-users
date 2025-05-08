@@ -1,6 +1,6 @@
 # Versiones de software
 DEBIAN_VERSION=12
-OPENNEBULA_VERSION=6.10.0
+OPENNEBULA_VERSION=6.10.0.1
 
 # URL de conexión a OpenNebula
 ONE_XMLRPC=https://opennebula.example.com/RPC2
