@@ -31,9 +31,9 @@ for i in range(inicial, final + 1):
     f = open("temp.txt", "w")
     f.write(f'''
     VM=[
-        MEMORY="{ram * 1024}",
+        MEMORY="{ram * 1024 * 4}",
         RUNNING_MEMORY="{ram * 1024}",
-        CPU="{cpus}",
+        CPU="{cpus * 4}",
         RUNNING_CPU="{cpus}",
         SYSTEM_DISK_SIZE="{disco * 1024}"
     ]
