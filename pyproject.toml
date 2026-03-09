@@ -3,7 +3,7 @@ name = "opennebula-users"
 version = "0.1.0"
 description = ""
 authors = [
-    {name = "Ion Jaureguialzo Sarasola",email = "ion@jaureguialzo.com"}
+    { name = "Ion Jaureguialzo Sarasola" }
 ]
 readme = "README.md"
 requires-python = ">=3.14"
