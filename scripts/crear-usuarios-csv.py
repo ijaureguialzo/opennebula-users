@@ -3,7 +3,6 @@
 import csv
 import os
 import subprocess
-import sys
 
 CSV_DEFAULT = "usuarios.csv"
 
@@ -15,8 +14,7 @@ print()
 
 csv_file = input(f"Nombre del fichero CSV (por defecto [{CSV_DEFAULT}]): ").strip()
 if not csv_file:
-    print(f"ERROR 0: No se ha indicado ningún fichero CSV.")
-    sys.exit(1)
+    csv_file = CSV_DEFAULT
 
 CSV_PATH = "/data/" + csv_file
 
