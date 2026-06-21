@@ -11,9 +11,11 @@ RUN apt-get update
 
 RUN apt-get -y install gnupg wget apt-transport-https systemd
 
-RUN wget -q -O- https://downloads.opennebula.io/repo/repo2.key | apt-key add -
+RUN mkdir -p /etc/apt/keyrings
 
-RUN echo "deb https://downloads.opennebula.io/repo/${OPENNEBULA_VERSION}/Debian/${DEBIAN_VERSION} stable opennebula" > /etc/apt/sources.list.d/opennebula.list
+RUN wget -q -O- https://downloads.opennebula.io/repo/repo2.key | gpg --dearmor --yes --output /etc/apt/keyrings/opennebula.gpg
+
+RUN echo "deb [signed-by=/etc/apt/keyrings/opennebula.gpg] https://downloads.opennebula.io/repo/${OPENNEBULA_VERSION}/Debian/${DEBIAN_VERSION} stable opennebula" > /etc/apt/sources.list.d/opennebula.list
 
 RUN apt-get update
 
