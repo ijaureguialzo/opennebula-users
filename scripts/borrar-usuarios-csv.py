@@ -4,7 +4,7 @@ import csv
 import os
 import subprocess
 
-CSV_DEFAULT = "borrar-usuarios.csv"
+CSV_DEFAULT = "usuarios.csv"
 
 print()
 print("-------------------------------------")
