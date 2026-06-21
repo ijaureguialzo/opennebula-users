@@ -3,14 +3,22 @@
 import csv
 import os
 import subprocess
+import sys
 
-CSV_PATH = "/data/borrar-usuarios.csv"
+CSV_DEFAULT = "borrar-usuarios.csv"
 
 print()
 print("-------------------------------------")
 print("--- Borrar usuarios de OpenNebula ---")
 print("-------------------------------------")
 print()
+
+csv_file = input(f"Nombre del fichero CSV (por defecto [{CSV_DEFAULT}]): ").strip()
+if not csv_file:
+    print(f"ERROR 0: No se ha indicado ningún fichero CSV.")
+    sys.exit(1)
+
+CSV_PATH = "/data/" + csv_file
 
 try:
     with open(CSV_PATH, newline="") as csvfile:
@@ -80,7 +88,8 @@ try:
         print("\nTodos los lotes procesados.")
 
 except FileNotFoundError:
-    print(f"ERROR: No se encontró el fichero {CSV_PATH}.")
-    print("Asegúrate de que 'borrar-usuarios.csv' existe en el directorio 'data' montado en /data.")
+    print(f"ERROR 0: No se encontró el fichero {CSV_PATH}.")
+    print("Asegúrate de que existe en el directorio 'data' montado en /data.")
+    sys.exit(1)
 except Exception as e:
     print(f"ERROR inesperado al leer {CSV_PATH}: {e}")
