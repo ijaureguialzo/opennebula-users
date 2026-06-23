@@ -49,6 +49,10 @@ Crear un administrador:
 make crear-admin
 ```
 
+## Gestionar las vistas de usuarios
+
+Editar los archivos en `/etc/one/fireedge/sunstone/views`, añadiendo o quitando archivos de cada carpeta de perfil.
+
 ## Referencias
 
 - [Command Line Interface](https://docs.opennebula.io/6.6/management_and_operations/references/cli.html)
@@ -56,3 +60,4 @@ make crear-admin
 - [OpenNebula Repositories](https://docs.opennebula.io/6.6/installation_and_configuration/frontend_installation/opennebula_repository_configuration.html#community-edition)
 - [OpenNebula CLI Tools](https://github.com/tinova/one-tools)
 - [Debian - Official Image](https://hub.docker.com/_/debian)
+- [Sunstone Views](https://docs.opennebula.io/7.2/product/cloud_system_administration/multitenancy/fireedge_sunstone_views/#fireedge-user-view)
