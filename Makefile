@@ -17,7 +17,7 @@ help: _header
 	@echo borrar-usuarios-csv
 	@echo --------------------------------
 	@echo crear-usuarios / borrar-usuarios
-	@echo modificar-cuotas
+	@echo modificar-cuotas / modificar-datastores
 	@echo borrar-maquinas
 	@echo --------------------------------
 	@echo crear-usuario / crear-admin
@@ -63,6 +63,9 @@ borrar-usuario:
 
 modificar-cuotas:
 	@docker compose run --rm opennebula-cli python3 /scripts/modificar-cuotas.py
+
+modificar-datastores:
+	@docker compose run --rm opennebula-cli python3 /scripts/modificar-datastores.py
 
 borrar-maquinas:
 	@docker compose run --rm opennebula-cli python3 /scripts/borrar-maquinas.py

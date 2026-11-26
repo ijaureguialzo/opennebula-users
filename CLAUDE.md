@@ -8,12 +8,13 @@ This is a Python-based toolset for managing OpenNebula cloud infrastructure — 
 
 ## Key Directories and Files
 
-- **`scripts/`** — All application logic (9 Python scripts):
+- **`scripts/`** — All application logic (12 Python scripts):
   - `crear-usuarios.py` / `borrar-usuarios.py` — Batch create/delete users with groups, quotas, networks, datacenters
   - `crear-usuario.py` / `borrar-usuario.py` — Single user create/delete (full resource setup)
   - `crear-admin.py` — Create admin-level user (assigned to `oneadmin` group)
   - `crear-red.py` — Create a standalone network (no user/group association)
   - `modificar-cuotas.py` — Update quotas for a range of existing users
+  - `modificar-datastores.py` — Grant access to selected datastores for a range of existing users
   - `borrar-maquinas.py` / `borrar-maquinas-usuario.py` — Delete VMs/templates/images for batch/single user
 - **`pyproject.toml`** + **`poetry.lock`** — Poetry project (`opennebula-users`, v0.1.0, Python >=3.14)
 - **`.env`** — Runtime config: OpenNebula endpoint, RPC URL, credentials (ignored in git)
@@ -50,6 +51,7 @@ make crear-red          # Create a standalone network (no user/group association
 ### Quotas and VMs
 ```
 make modificar-cuotas       # Update quotas for a range of existing users
+make modificar-datastores   # Grant access to selected datastores for a range of existing users
 make borrar-maquinas        # Delete VMs/templates/images for a batch of users
 make borrar-maquinas-usuario  # Delete VMs/templates/images for a single user
 ```
