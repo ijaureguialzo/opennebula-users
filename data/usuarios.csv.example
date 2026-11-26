@@ -1,2 +1,2 @@
-Nombre,Separador,Inicial,Final,Contraseña,Grupo,CPUs,RAM (GiB),Disco (GiB),Subred,Máscara,Gateway,DNS,Públicas,Inicio públicas,Privadas,Inicio privadas
-test,-,1,5,12345Abcde,test,4,12,100,172.20.227.0,255.255.0.0,172.20.1.2,192.168.10.1 1.1.1.1,0,1,10,10
+Nombre,Separador,Inicial,Final,Contraseña,Grupo,CPUs,RAM (GiB),Disco (GiB),Subred,Máscara,Gateway,DNS,Públicas,Inicio públicas,Privadas,Inicio privadas,Datastores
+test,-,1,2,12345Abcde,test,4,12,100,172.20.227.0,255.255.0.0,172.20.1.2,192.168.10.1 1.1.1.1,0,1,10,10,"0,1,2,100,103,104,105"
