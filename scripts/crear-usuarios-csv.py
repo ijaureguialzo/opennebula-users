@@ -107,7 +107,8 @@ try:
                     # VDC associations
                     _run("onevdc addgroup " + usuario + " " + usuario)
                     _run("onevdc delgroup default " + usuario)
-                    _run("onevdc addhost " + usuario + " 0 localhost")
+                    _run("onevdc addhost " + usuario + " 0 opennebula")
+                    _run("onevdc addhost " + usuario + " 0 opennebula2")
                     for ds in datastores:
                         _run("onevdc adddatastore " + usuario + " 0 " + ds)
 

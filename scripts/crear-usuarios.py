@@ -94,7 +94,8 @@ for i in range(inicial, final + 1):
 
     os.system("onevdc addgroup " + usuario + " " + usuario)
     os.system("onevdc delgroup default " + usuario)
-    os.system("onevdc addhost " + usuario + " 0 localhost")
+    os.system("onevdc addhost " + usuario + " 0 opennebula")
+    os.system("onevdc addhost " + usuario + " 0 opennebula2")
     print(f"Asignando datastores a {usuario}...")
     for ds in selected:
         os.system("onevdc adddatastore " + usuario + " 0 " + ds["id"])
