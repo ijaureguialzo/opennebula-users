@@ -4,6 +4,8 @@ import csv
 import os
 import subprocess
 
+from datastores_common import DATASTORES_DEFAULT, parsear_datastores
+
 CSV_DEFAULT = "usuarios.csv"
 
 
@@ -51,6 +53,7 @@ try:
                 inicial_publicas = int(row["Inicio públicas"].strip())
                 privadas = int(row["Privadas"].strip())
                 inicial_privadas = int(row["Inicio privadas"].strip())
+                datastores = parsear_datastores(row.get("Datastores"), predeterminado=DATASTORES_DEFAULT)
 
             except (KeyError, ValueError) as e:
                 print(f"ERROR: Fila {row_num} con datos inválidos ({e}). Se salta esta fila.")
@@ -60,6 +63,7 @@ try:
             print(f"--- Datos del lote: grupo={grupo}, cpus={cpus}, ram={ram}GiB, disco={disco}GiB ---")
             print(f"--- Red: subred={subred}, mascara={mascara}, gateway={gateway}, dns={dns} ---")
             print(f"--- IPs públicas: {publicas} (inicio={inicial_publicas}), privadas: {privadas} (inicio={inicial_privadas}) ---")
+            print(f"--- Datastores: {', '.join(datastores)} ---")
             print()
 
             # Crear recursos compartidos del lote (grupo padre, VDC)
@@ -104,9 +108,8 @@ try:
                     _run("onevdc addgroup " + usuario + " " + usuario)
                     _run("onevdc delgroup default " + usuario)
                     _run("onevdc addhost " + usuario + " 0 localhost")
-                    _run("onevdc adddatastore " + usuario + " 0 0")
-                    _run("onevdc adddatastore " + usuario + " 0 1")
-                    _run("onevdc adddatastore " + usuario + " 0 2")
+                    for ds in datastores:
+                        _run("onevdc adddatastore " + usuario + " 0 " + ds)
 
                     # Usuario con credenciales
                     print(f"Creando el usuario {usuario}...")

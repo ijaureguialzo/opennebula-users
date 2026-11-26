@@ -1,8 +1,15 @@
 #!/usr/bin/env python3
 
 import os
+import sys
 import click
 import subprocess
+
+from datastores_common import (
+    DATASTORES_DEFAULT,
+    listar_datastores,
+    seleccionar_datastores,
+)
 
 print()
 print("------------------------------------")
@@ -39,6 +46,22 @@ if publicas > 0:
 else:
     inicial_privadas = click.prompt("Número de host inicial para las direcciones privadas", default=10)
 
+print("--- Datastores --------------------")
+try:
+    datastores = listar_datastores()
+except RuntimeError as e:
+    print(f"\nERROR: {e}")
+    sys.exit(1)
+
+if not datastores:
+    print("\nERROR: no hay datastores disponibles en el sistema.")
+    sys.exit(1)
+
+indices = seleccionar_datastores(datastores, preseleccionados=DATASTORES_DEFAULT)
+selected = [datastores[i] for i in indices]
+selected_ids = [ds["id"] for ds in selected]
+
+print(f"Datastores seleccionados: {', '.join(selected_ids)}")
 print()
 
 print(f"Creando el grupo {grupo}...")
@@ -72,9 +95,9 @@ for i in range(inicial, final + 1):
     os.system("onevdc addgroup " + usuario + " " + usuario)
     os.system("onevdc delgroup default " + usuario)
     os.system("onevdc addhost " + usuario + " 0 localhost")
-    os.system("onevdc adddatastore " + usuario + " 0 0")
-    os.system("onevdc adddatastore " + usuario + " 0 1")
-    os.system("onevdc adddatastore " + usuario + " 0 2")
+    print(f"Asignando datastores a {usuario}...")
+    for ds in selected:
+        os.system("onevdc adddatastore " + usuario + " 0 " + ds["id"])
 
     print(f"Creando el usuario {usuario}...")
     os.system("oneuser create " + usuario + " " + contrasenya)

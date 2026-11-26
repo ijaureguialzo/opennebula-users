@@ -9,7 +9,9 @@ This is a Python-based toolset for managing OpenNebula cloud infrastructure — 
 ## Key Directories and Files
 
 - **`scripts/`** — All application logic (12 Python scripts):
-  - `crear-usuarios.py` / `borrar-usuarios.py` — Batch create/delete users with groups, quotas, networks, datacenters
+  - `crear-usuarios.py` / `borrar-usuarios.py` — Batch create/delete users with groups, quotas, networks, datacenters (datastores asked interactively)
+  - `crear-usuarios-csv.py` — Batch-create users from a CSV file (optional `Datastores` column, comma-separated IDs)
+  - `borrar-usuarios-csv.py` — Batch-delete users from a CSV file
   - `crear-usuario.py` / `borrar-usuario.py` — Single user create/delete (full resource setup)
   - `crear-admin.py` — Create admin-level user (assigned to `oneadmin` group)
   - `crear-red.py` — Create a standalone network (no user/group association)
@@ -32,7 +34,8 @@ make build          # Build the Docker image (docker compose build)
 
 ### User management (batch)
 ```
-make crear-usuarios     # Batch-create users with groups, quotas, networks, datacenters
+make crear-usuarios     # Batch-create users with groups, quotas, networks, datacenters and selected datastores
+make crear-usuarios-csv  # Batch-create users from a CSV file (optional `Datastores` column, comma-separated IDs)
 make borrar-usuarios    # Batch-delete users and all associated resources (VMs, templates, images)
 ```
 
