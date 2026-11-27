@@ -8,7 +8,7 @@ This is a Python-based toolset for managing OpenNebula cloud infrastructure — 
 
 ## Key Directories and Files
 
-- **`scripts/`** — All application logic (12 Python scripts):
+- **`scripts/`** — All application logic (13 Python scripts):
   - `crear-usuarios.py` / `borrar-usuarios.py` — Batch create/delete users with groups, quotas, networks, datacenters (datastores asked interactively)
   - `crear-usuarios-csv.py` — Batch-create users from a CSV file (optional `Datastores` column, comma-separated IDs)
   - `borrar-usuarios-csv.py` — Batch-delete users from a CSV file
@@ -17,6 +17,7 @@ This is a Python-based toolset for managing OpenNebula cloud infrastructure — 
   - `crear-red.py` — Create a standalone network (no user/group association)
   - `modificar-cuotas.py` — Update quotas for a range of existing users
   - `modificar-datastores.py` — Grant access to selected datastores for a range of existing users
+  - `modificar-hosts.py` — Grant access to selected hosts for a range of existing users
   - `borrar-maquinas.py` / `borrar-maquinas-usuario.py` — Delete VMs/templates/images for batch/single user
 - **`pyproject.toml`** + **`poetry.lock`** — Poetry project (`opennebula-users`, v0.1.0, Python >=3.14)
 - **`.env`** — Runtime config: OpenNebula endpoint, RPC URL, credentials (ignored in git)
@@ -55,6 +56,7 @@ make crear-red          # Create a standalone network (no user/group association
 ```
 make modificar-cuotas       # Update quotas for a range of existing users
 make modificar-datastores   # Grant access to selected datastores for a range of existing users
+make modificar-hosts       # Grant access to selected hosts for a range of existing users
 make borrar-maquinas        # Delete VMs/templates/images for a batch of users
 make borrar-maquinas-usuario  # Delete VMs/templates/images for a single user
 ```
@@ -71,6 +73,8 @@ make clean        # Tear down containers and volumes (docker compose down -v)
 - **Error handling is minimal** — many scripts use bare `except: pass` (e.g., network creation in `crear-usuarios.py`).
 - **Script patterns:** Simple commands use `os.system()` (fire-and-forget); commands that need output (e.g., resource IDs) use `subprocess.run()` with `capture_output=True` and parse stdout.
 - **Python 3.14+** is required (per `pyproject.toml`). The only runtime dependency is `click` for interactive prompts.
+- **Hosts:** `onehost` is broken in the official opennebula-tools image (missing `HostSyncManager`, fails at load time). Host listing therefore uses the plain XML-RPC API (`one.hostpool.info`) in `hosts_common.py`, honoring `ONE_XMLRPC` / `ONE_AUTH` / `ONE_DISABLE_SSL_VERIFY` from the environment.
+- **`onevdc addhost` takes a host ID** (`<zoneid> <hostid>`), not a name; `modificar-hosts.py` passes the host ID from the listing.
 - **`.env` and `.token` are gitignored** — copy from `env-example` and `token-example` templates before use.
 
 ## Convenciones de commits
